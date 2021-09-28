@@ -1,0 +1,19 @@
+.navbar-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  border: 1px solid black;
+  border-width: 0 0 1px;
+}
+
+.navbar-wrapper a {
+  color: #366479;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.navbar-wrapper button {
+  border-radius: 4px;
+  border: 0;
+  background-color: rgb(131, 131, 131);
+}
