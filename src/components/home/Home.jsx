@@ -23,7 +23,6 @@ const Home = ({favoriteCities, addToFavorites, removeFromFavorites, currentCityW
     const autoComplete = useCallback(debounce((value) => handleAutocomplete(value),consts.ONE_SECOND), [])
 
     // useEffect(() => {
-    //     console.log('useEffect hook')
     //     navigator.geolocation.getCurrentPosition(geoLocationAllowed, geoLocationBlocked)
     // }, [])
     
@@ -62,7 +61,6 @@ const Home = ({favoriteCities, addToFavorites, removeFromFavorites, currentCityW
 
     return (
         <div className={handleTheme(themes)}>
-            {console.log('Home rendered - begin')}
             <Search handleTextBoxOnChange={handleTextBoxOnChange} textBox={textBox} suggestedCities={suggestedCities} handleCityOnClick={handleCityOnClick} />
 
             <ButtonsWrapper 
@@ -76,7 +74,6 @@ const Home = ({favoriteCities, addToFavorites, removeFromFavorites, currentCityW
                 <CurrentWeather currentCityName={currentCityName} currentCityWeather={currentCityWeather} />
                 <CurrentForecast currentCityDailyWeather={currentCityDailyWeather} />
             </div>
-            {console.log('Home rendered - end')}
         </div>
     )
 

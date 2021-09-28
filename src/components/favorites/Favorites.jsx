@@ -2,13 +2,13 @@ import React from 'react'
 import './Favorites.css'
 import {useSelector, useDispatch} from 'react-redux';
 import consts from '../home/home.consts'
+
 function Favorites({favoriteCities}) {
     const themes = useSelector(state => state.themes);
     const units = useSelector(state => state.units);
-    console.log()
+
     return (
         <div style={{backgroundColor: themes}}>
-            {console.log('Favories rendered')}
             <div className={`favorites-container ${themes}`}>
                 <div className="row row-cols-auto">
                     {favoriteCities.map(e => 

@@ -15,7 +15,6 @@ const dateToDayName = (date) => {
 const handleTemperature = (units, fahrenheit) => {
     if (units == consts.FAHRENHEIT) return fahrenheit
     const celsius = fahrenheitToCelsius(fahrenheit)
-    console.log('fdsfdsfsdfsd', celsius, fahrenheit);
     return Number.parseFloat(celsius).toPrecision(3)
   }
 

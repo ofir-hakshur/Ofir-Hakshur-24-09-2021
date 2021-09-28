@@ -9,7 +9,6 @@ const CurrentWeather = ({currentCityName: name, currentCityWeather: weather }) =
     return (
         <>
             <div className='home-box home-currentWeather'>
-                {console.log('@@@@@@@', weather)}
                 {name} {weather && weather.length!=0 && handleTemperature(units, weather[0].Temperature.Imperial.Value)}
                 <span className='home-minorMargin'>{units == consts.FAHRENHEIT ? <span>&#8457;</span> : <span>&#8451;</span>}</span>
             </div>

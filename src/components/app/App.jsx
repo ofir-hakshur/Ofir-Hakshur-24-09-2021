@@ -6,7 +6,6 @@ import { Route, Switch } from 'react-router'
 import Favorites from '../favorites/Favorites'
 import {jsonParseFromLocalStorage} from './app.helpers';
 
-
 const App = () => {
     const [currentCityWeather, setCurrentCityWeather] = useState(jsonParseFromLocalStorage('telAvivCurrentWeather')) //need to reboots with []
     const [currentCityDailyWeather, setCurrentCityDailyWeather] = useState(jsonParseFromLocalStorage('fetchTelAvivDailyWeather')) //need to reboots with {}
@@ -18,19 +17,18 @@ const App = () => {
         {
             const arr = [...favoriteCities, cityObject]
             setFavoriteCities(arr)
-            console.log(arr)
         }
     }
 
     const handleRemoveFromFavorites = (cityObject) => {
         const len = favoriteCities.filter(e => e.cityName == cityObject.cityName).length
-
         if (len != 0)
         {
             const arr = favoriteCities.filter(e => cityObject.cityName != e.cityName)
             setFavoriteCities(arr)
         }
     }
+    
     return (
         <>
             <Navbar/>
