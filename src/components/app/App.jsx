@@ -7,6 +7,7 @@ import Favorites from '../favorites/Favorites'
 
 const App = () => {
     const [favoriteCities, setFavoriteCities] = useState([])
+    const [currentCityName, setCurrentCityName] = useState(consts.TEL_AVIV)
 
     const handleAddToFavorites = (cityObject) => {
         const len = favoriteCities.length
@@ -31,7 +32,7 @@ const App = () => {
             <Navbar/>
             <Switch>
                 <Route path='/favorites' render={() => <Favorites favoriteCities={favoriteCities}/>}></Route>
-                <Route path='/' render={() => <Home addToFavorites={handleAddToFavorites} removeFromFavorites={handleRemoveFromFavorites} favoriteCities={favoriteCities}/>}></Route>
+                <Route path='/' render={() => <Home currentCityName={currentCityName} setCurrentCityName={setCurrentCityName} addToFavorites={handleAddToFavorites} removeFromFavorites={handleRemoveFromFavorites} favoriteCities={favoriteCities}/>}></Route>
             </Switch>
         </>
     )

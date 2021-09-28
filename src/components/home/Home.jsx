@@ -13,19 +13,21 @@ import CurrentForecast from './CurrentForecast';
 import Search from './Search'
 import {changeCurrentCity, changeCurrentDaily} from '../../actions/';
 
-const Home = ({favoriteCities, addToFavorites, removeFromFavorites}) => {
+const Home = ({favoriteCities, addToFavorites, removeFromFavorites, currentCityName, setCurrentCityName}) => {
     const themes = useSelector(state => state.themes);
+    const currentWeather = useSelector(state => state.currentCityWeather)
     const dispatch = useDispatch();
 
     const [suggestedCities, setSuggestedCities] = useState([])
     const [textBox, setTextBox] = useState('')
-    const [currentCityName, setCurrentCityName] = useState(consts.TEL_AVIV)
     const [currentCityKey, setCurrentCityKey] = useState(config.telAvivKey)
 
     const autoComplete = useCallback(debounce((value) => handleAutocomplete(value),consts.ONE_SECOND), [])
 
     useEffect(() => {
-        navigator.geolocation.getCurrentPosition(geoLocationAllowed, geoLocationBlocked)
+        if (currentWeather.length == 0){
+            navigator.geolocation.getCurrentPosition(geoLocationAllowed, geoLocationBlocked)
+        }
     }, [])
     
     const handleAutocomplete = async (textBoxValue) => {
