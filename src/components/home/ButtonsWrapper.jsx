@@ -4,14 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import {toCelsius, toFarhenheit} from '../../actions/';
 import consts from './home.consts';
 
-const ButtonsWrapper = ({currentCityWeather, isCurrentCityInFavoriteList , addToFavorites,removeFromFavorites, currentCityName}) => {
+const ButtonsWrapper = ({isCurrentCityInFavoriteList ,addToFavorites, removeFromFavorites, currentCityName}) => {
     const units = useSelector(state => state.units);
+    const currentCityWeather = useSelector(state => state.currentCityWeather)
     const dispatch = useDispatch();
 
     return (
         <div className='btns-wrapper'>
-            {console.log('From buttonsWrapper currentCityWeather', currentCityWeather)}
-            {console.log('From buttonsWrapper currentCityName', currentCityName)}
             <div>
                 <button className='btn btn-secondary' onClick={() => dispatch(toCelsius())} hidden={units==consts.CELSIUS?true:false}>celsius</button>
                 <button className='btn btn-secondary' onClick={() => dispatch(toFarhenheit())} hidden={units==consts.FAHRENHEIT?true:false}>fahrenheit</button>               

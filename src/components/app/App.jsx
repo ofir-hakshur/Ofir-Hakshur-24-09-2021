@@ -4,10 +4,8 @@ import consts from './app.consts'
 import Navbar from '../navbar/'
 import { Route, Switch } from 'react-router'
 import Favorites from '../favorites/Favorites'
-import {jsonParseFromLocalStorage} from './app.helpers';
 
 const App = () => {
-    const [currentCityDailyWeather, setCurrentCityDailyWeather] = useState({})//jsonParseFromLocalStorage('fetchTelAvivDailyWeather')) //need to reboots with {}
     const [favoriteCities, setFavoriteCities] = useState([])
 
     const handleAddToFavorites = (cityObject) => {
@@ -33,7 +31,7 @@ const App = () => {
             <Navbar/>
             <Switch>
                 <Route path='/favorites' render={() => <Favorites favoriteCities={favoriteCities}/>}></Route>
-                <Route path='/' render={() => <Home currentCityDailyWeather={currentCityDailyWeather} setCurrentCityDailyWeather={setCurrentCityDailyWeather} addToFavorites={handleAddToFavorites} removeFromFavorites={handleRemoveFromFavorites} favoriteCities={favoriteCities}/>}></Route>
+                <Route path='/' render={() => <Home addToFavorites={handleAddToFavorites} removeFromFavorites={handleRemoveFromFavorites} favoriteCities={favoriteCities}/>}></Route>
             </Switch>
         </>
     )

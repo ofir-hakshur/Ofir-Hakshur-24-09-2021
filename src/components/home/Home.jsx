@@ -13,7 +13,7 @@ import CurrentForecast from './CurrentForecast';
 import Search from './Search'
 import {changeCurrentCity, changeCurrentDaily} from '../../actions/';
 
-const Home = ({favoriteCities, addToFavorites, removeFromFavorites, currentCityWeather, currentCityDailyWeather, setCurrentCityDailyWeather}) => {
+const Home = ({favoriteCities, addToFavorites, removeFromFavorites}) => {
     const themes = useSelector(state => state.themes);
     const dispatch = useDispatch();
 
@@ -31,9 +31,6 @@ const Home = ({favoriteCities, addToFavorites, removeFromFavorites, currentCityW
     const handleAutocomplete = async (textBoxValue) => {
         if (textBoxValue.length > 0)
         {
-            //comment the following when real fetch is needed
-            //setSuggestedCities(jsonParseFromLocalStorage('autoComplete'))
-            //Uncomment it for real fetch data
             const results = await axios.get(`${config.baseRoute}/${config.autoCompleteApiEndPoint}`, {params: {apikey: config.apikey, q: textBoxValue} })
             setSuggestedCities(results.data)
         }
@@ -63,10 +60,10 @@ const Home = ({favoriteCities, addToFavorites, removeFromFavorites, currentCityW
 
     return (
         <div className={handleTheme(themes)}>
-            <Search handleTextBoxOnChange={handleTextBoxOnChange} textBox={textBox} suggestedCities={suggestedCities} handleCityOnClick={handleCityOnClick} />
 
+            <Search handleTextBoxOnChange={handleTextBoxOnChange} textBox={textBox} suggestedCities={suggestedCities} handleCityOnClick={handleCityOnClick} />
+            
             <ButtonsWrapper 
-                currentCityWeather={currentCityWeather}
                 isCurrentCityInFavoriteList={isCurrentCityInFavoriteList}
                 addToFavorites={addToFavorites}
                 removeFromFavorites={removeFromFavorites}
@@ -74,7 +71,7 @@ const Home = ({favoriteCities, addToFavorites, removeFromFavorites, currentCityW
             />
             <div className='home-margin'>
                 <CurrentWeather currentCityName={currentCityName}/>
-                <CurrentForecast currentCityDailyWeather={currentCityDailyWeather} />
+                <CurrentForecast />
             </div>
         </div>
     )
