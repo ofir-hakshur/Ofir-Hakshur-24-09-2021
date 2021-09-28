@@ -22,9 +22,9 @@ const Home = ({favoriteCities, addToFavorites, removeFromFavorites, currentCityW
 
     const autoComplete = useCallback(debounce((value) => handleAutocomplete(value),consts.ONE_SECOND), [])
 
-    // useEffect(() => {
-    //     navigator.geolocation.getCurrentPosition(geoLocationAllowed, geoLocationBlocked)
-    // }, [])
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(geoLocationAllowed, geoLocationBlocked)
+    }, [])
     
     const handleAutocomplete = async (textBoxValue) => {
         if (textBoxValue.length > 0)

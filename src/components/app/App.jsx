@@ -7,8 +7,8 @@ import Favorites from '../favorites/Favorites'
 import {jsonParseFromLocalStorage} from './app.helpers';
 
 const App = () => {
-    const [currentCityWeather, setCurrentCityWeather] = useState(jsonParseFromLocalStorage('telAvivCurrentWeather')) //need to reboots with []
-    const [currentCityDailyWeather, setCurrentCityDailyWeather] = useState(jsonParseFromLocalStorage('fetchTelAvivDailyWeather')) //need to reboots with {}
+    const [currentCityWeather, setCurrentCityWeather] = useState([])//jsonParseFromLocalStorage('telAvivCurrentWeather')) //need to reboots with []
+    const [currentCityDailyWeather, setCurrentCityDailyWeather] = useState({})//jsonParseFromLocalStorage('fetchTelAvivDailyWeather')) //need to reboots with {}
     const [favoriteCities, setFavoriteCities] = useState([])
 
     const handleAddToFavorites = (cityObject) => {
