@@ -12,12 +12,19 @@ export const toCelsius = () => {
 
 export const toLight = () => {
   return {
-  type: 'TO_LIGHT'
+    type: 'TO_LIGHT'
   }
 }
 
 export const toDark = () => {
   return {
-  type: 'TO_DARK'
+    type: 'TO_DARK'
+  }
+}
+
+export const changeCurrentCity = (city) => {
+  return {
+    type: 'CHANGE_CITY',
+    payload: city
   }
 }

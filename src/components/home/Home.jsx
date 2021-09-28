@@ -11,10 +11,12 @@ import ButtonsWrapper from './ButtonsWrapper';
 import CurrentWeather from './CurrentWeather';
 import CurrentForecast from './CurrentForecast';
 import Search from './Search'
+import {changeCurrentCity} from '../../actions/';
 
 const Home = ({favoriteCities, addToFavorites, removeFromFavorites, currentCityWeather, setCurrentCityWeather, currentCityDailyWeather, setCurrentCityDailyWeather}) => {
     const themes = useSelector(state => state.themes);
-    
+    const dispatch = useDispatch();
+
     const [suggestedCities, setSuggestedCities] = useState([])
     const [textBox, setTextBox] = useState('')
     const [currentCityName, setCurrentCityName] = useState(consts.TEL_AVIV)
@@ -71,15 +73,14 @@ const Home = ({favoriteCities, addToFavorites, removeFromFavorites, currentCityW
                 currentCityName={currentCityName}
             />
             <div className='home-margin'>
-                <CurrentWeather currentCityName={currentCityName} currentCityWeather={currentCityWeather} />
+                <CurrentWeather currentCityName={currentCityName}/>
                 <CurrentForecast currentCityDailyWeather={currentCityDailyWeather} />
             </div>
         </div>
     )
 
     async function fetchcurrentCityWeather() {
-        const results = await axios.get(`${config.baseRoute}/${config.currentWeatherEndPoint}/${config.telAvivKey}`, {params: {apikey: config.apikey} })
-        setCurrentCityWeather(results.data)
+        const {data} = await axios.get(`${config.baseRoute}/${config.currentWeatherEndPoint}/${config.telAvivKey}`, {params: {apikey: config.apikey} })
     }
 
     async function fetchcurrentCityDailyWeather() {
@@ -108,7 +109,7 @@ const Home = ({favoriteCities, addToFavorites, removeFromFavorites, currentCityW
         setCurrentCityKey(cityKey)
         const currentCityWeather = await axios.get(`${config.baseRoute}/${config.currentWeatherEndPoint}/${cityKey}`, {params: {apikey: config.apikey} })
         const currentCityDailyWeather = await axios.get(`${config.baseRoute}/${config.dailyWeatherEndPoint}/${cityKey}`, {params: {apikey: config.apikey} })
-        setCurrentCityWeather(currentCityWeather.data)
+        dispatch(changeCurrentCity(currentCityWeather.data))
         setCurrentCityDailyWeather(currentCityDailyWeather.data)
     }
 }

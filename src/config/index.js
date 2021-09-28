@@ -1,7 +1,8 @@
 const config = {
     tempEndPoint: 'https://jsonplaceholder.typicode.com/users',
     //apikey: 'ZSqquvHhCYForYQWzUKukJNOLbLDOZ1S',
-    apikey: 'H8fDv5gREko67t9XQ5yCxJPdM1sGfjm2',
+    //apikey: 'H8fDv5gREko67t9XQ5yCxJPdM1sGfjm2',
+    apikey: 'qDQjp5wxZFZ7tGPHgGVcMypJG7C2f1FU',
     telAvivKey: '215854',
     baseRoute: 'https://dataservice.accuweather.com',
     autoCompleteApiEndPoint: 'locations/v1/cities/autocomplete',
