@@ -11,9 +11,9 @@ import ButtonsWrapper from './ButtonsWrapper';
 import CurrentWeather from './CurrentWeather';
 import CurrentForecast from './CurrentForecast';
 import Search from './Search'
-import {changeCurrentCity} from '../../actions/';
+import {changeCurrentCity, changeCurrentDaily} from '../../actions/';
 
-const Home = ({favoriteCities, addToFavorites, removeFromFavorites, currentCityWeather, setCurrentCityWeather, currentCityDailyWeather, setCurrentCityDailyWeather}) => {
+const Home = ({favoriteCities, addToFavorites, removeFromFavorites, currentCityWeather, currentCityDailyWeather, setCurrentCityDailyWeather}) => {
     const themes = useSelector(state => state.themes);
     const dispatch = useDispatch();
 
@@ -81,11 +81,12 @@ const Home = ({favoriteCities, addToFavorites, removeFromFavorites, currentCityW
 
     async function fetchcurrentCityWeather() {
         const {data} = await axios.get(`${config.baseRoute}/${config.currentWeatherEndPoint}/${config.telAvivKey}`, {params: {apikey: config.apikey} })
+        dispatch(changeCurrentCity(data))
     }
 
     async function fetchcurrentCityDailyWeather() {
-        const results = await axios.get(`${config.baseRoute}/${config.dailyWeatherEndPoint}/${config.telAvivKey}`, {params: {apikey: config.apikey} })
-        setCurrentCityDailyWeather(results.data)
+        const {data} = await axios.get(`${config.baseRoute}/${config.dailyWeatherEndPoint}/${config.telAvivKey}`, {params: {apikey: config.apikey} })
+        dispatch(changeCurrentDaily(data))
     }
 
     async function geoLocationAllowed (position){
@@ -110,7 +111,7 @@ const Home = ({favoriteCities, addToFavorites, removeFromFavorites, currentCityW
         const currentCityWeather = await axios.get(`${config.baseRoute}/${config.currentWeatherEndPoint}/${cityKey}`, {params: {apikey: config.apikey} })
         const currentCityDailyWeather = await axios.get(`${config.baseRoute}/${config.dailyWeatherEndPoint}/${cityKey}`, {params: {apikey: config.apikey} })
         dispatch(changeCurrentCity(currentCityWeather.data))
-        setCurrentCityDailyWeather(currentCityDailyWeather.data)
+        dispatch(changeCurrentDaily(currentCityDailyWeather.data))
     }
 }
 

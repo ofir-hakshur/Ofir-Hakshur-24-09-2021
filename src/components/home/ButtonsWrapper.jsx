@@ -10,6 +10,8 @@ const ButtonsWrapper = ({currentCityWeather, isCurrentCityInFavoriteList , addTo
 
     return (
         <div className='btns-wrapper'>
+            {console.log('From buttonsWrapper currentCityWeather', currentCityWeather)}
+            {console.log('From buttonsWrapper currentCityName', currentCityName)}
             <div>
                 <button className='btn btn-secondary' onClick={() => dispatch(toCelsius())} hidden={units==consts.CELSIUS?true:false}>celsius</button>
                 <button className='btn btn-secondary' onClick={() => dispatch(toFarhenheit())} hidden={units==consts.FAHRENHEIT?true:false}>fahrenheit</button>               

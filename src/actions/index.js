@@ -28,3 +28,10 @@ export const changeCurrentCity = (city) => {
     payload: city
   }
 }
+
+export const changeCurrentDaily = (daily) => {
+  return {
+    type: 'CHANGE_DAILY',
+    payload: daily
+  }
+}
