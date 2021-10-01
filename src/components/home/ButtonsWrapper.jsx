@@ -10,16 +10,22 @@ const ButtonsWrapper = ({isCurrentCityInFavoriteList}) => {
     const currentCityName = useSelector(state => state.currentCityName)
     const dispatch = useDispatch();
 
+    const handleAddRemoveBtnClassName = () => {
+        const ans = isCurrentCityInFavoriteList();
+        return (ans == true ? 'btn btn-danger' : 'btn btn-success');
+    }
+
     return (
         <div className='btns-wrapper'>
             <div>
-                <button className='btn btn-secondary' onClick={() => dispatch(toCelsius())} hidden={units==consts.CELSIUS?true:false}>celsius</button>
-                <button className='btn btn-secondary' onClick={() => dispatch(toFarhenheit())} hidden={units==consts.FAHRENHEIT?true:false}>fahrenheit</button>               
+                <button className='btn btn-secondary' onClick={units == consts.CELSIUS ? () => dispatch(toFarhenheit()) : () => dispatch(toCelsius())}>{units == consts.CELSIUS ? 'To farhenheit' : 'To celsius'}</button>            
             </div>
             <div>
                 <Like  display={isCurrentCityInFavoriteList()}/>
-                <button className='btn btn-success' hidden={isCurrentCityInFavoriteList()} onClick={() => dispatch(addToFavoriteCities({'cityWeather': currentCityWeather[0], 'cityName': currentCityName}))}>add to favorites</button>
-                <button className='btn btn-danger' hidden={!isCurrentCityInFavoriteList()} onClick={() => dispatch(removeFromFavoriteCities({'cityWeather': currentCityWeather[0], 'cityName': currentCityName}))}>remove from favorites</button>
+                <button className={handleAddRemoveBtnClassName()}
+                     onClick={isCurrentCityInFavoriteList() == true ?() => dispatch(removeFromFavoriteCities({'cityWeather': currentCityWeather[0], 'cityName': currentCityName})) : () => dispatch(addToFavoriteCities({'cityWeather': currentCityWeather[0], 'cityName': currentCityName}))}>
+                     {isCurrentCityInFavoriteList() == true ? 'remove from favorites': 'add to favorites'}
+                     </button>
             </div>  
         </div> 
     )
