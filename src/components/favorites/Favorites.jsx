@@ -3,9 +3,10 @@ import './Favorites.css'
 import {useSelector, useDispatch} from 'react-redux';
 import consts from '../home/home.consts'
 
-function Favorites({favoriteCities}) {
+function Favorites() {
     const themes = useSelector(state => state.themes);
     const units = useSelector(state => state.units);
+    const favoriteCities = useSelector(state => state.favoriteCities);
 
     return (
         <div style={{backgroundColor: themes}}>

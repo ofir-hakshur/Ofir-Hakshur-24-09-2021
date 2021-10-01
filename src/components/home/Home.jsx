@@ -11,11 +11,13 @@ import ButtonsWrapper from './ButtonsWrapper';
 import CurrentWeather from './CurrentWeather';
 import CurrentForecast from './CurrentForecast';
 import Search from './Search'
-import {changeCurrentCity, changeCurrentDaily} from '../../actions/';
+import {changeCurrentCity, changeCurrentDaily, changeCityName} from '../../actions/';
 
-const Home = ({favoriteCities, addToFavorites, removeFromFavorites, currentCityName, setCurrentCityName}) => {
+const Home = () => {
     const themes = useSelector(state => state.themes);
     const currentWeather = useSelector(state => state.currentCityWeather)
+    const favoriteCities = useSelector(state => state.favoriteCities)
+    const currentCityName = useSelector(state => state.currentCityName)
     const dispatch = useDispatch();
 
     const [suggestedCities, setSuggestedCities] = useState([])
@@ -67,12 +69,9 @@ const Home = ({favoriteCities, addToFavorites, removeFromFavorites, currentCityN
             
             <ButtonsWrapper 
                 isCurrentCityInFavoriteList={isCurrentCityInFavoriteList}
-                addToFavorites={addToFavorites}
-                removeFromFavorites={removeFromFavorites}
-                currentCityName={currentCityName}
             />
             <div className='home-margin'>
-                <CurrentWeather currentCityName={currentCityName}/>
+                <CurrentWeather />
                 <CurrentForecast />
             </div>
         </div>
@@ -105,7 +104,7 @@ const Home = ({favoriteCities, addToFavorites, removeFromFavorites, currentCityN
     }
 
     async function setForeCastWeather(cityName, cityKey){
-        setCurrentCityName(cityName)
+        dispatch(changeCityName(cityName))
         setCurrentCityKey(cityKey)
         const currentCityWeather = await axios.get(`${config.baseRoute}/${config.currentWeatherEndPoint}/${cityKey}`, {params: {apikey: config.apikey} })
         const currentCityDailyWeather = await axios.get(`${config.baseRoute}/${config.dailyWeatherEndPoint}/${cityKey}`, {params: {apikey: config.apikey} })
