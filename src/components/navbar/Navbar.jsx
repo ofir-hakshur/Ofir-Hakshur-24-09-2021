@@ -12,7 +12,7 @@ const Navbar = () => {
     return (
       <nav className="navbar-wrapper">
         <div>
-          Herolo weather task - Ofir Hakshur
+          Ofir Hakshur - Weather App
         </div>
         <div>
           <Link to="/">Home</Link>
